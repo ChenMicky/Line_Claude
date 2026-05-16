@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  fastapi-app:
+    build: .
+    container_name: fastapi-n8n-claude-wiki
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount Claude_wiki directory for live updates without rebuilding
+      - ./Claude_wiki:/app/Claude_wiki
+      # Mount .env file for environment variables
+      - ./.env:/app/.env
+    env_file:
+      - .env
+    environment:
+      - WIKI_PATH=/app/Claude_wiki
+      - PORT=8000
+      - HOST=0.0.0.0
+      - OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

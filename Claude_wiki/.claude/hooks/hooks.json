@@ -1,0 +1,4 @@
+{
+  "SessionStop": "將本次 session 的重要 context 摘要寫入 wiki/hot.md",
+  "SessionStart": "讀取 wiki/hot.md 取得最近 context"
+}
