@@ -1,7 +1,7 @@
 import logging
 from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel, Field
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 
 from app.services.claude_client import ClaudeClient
 from app.services.wiki_loader import load_wiki_content
@@ -13,10 +13,15 @@ router = APIRouter(prefix="/webhook", tags=["webhook"])
 claude_client = ClaudeClient()
 
 
+class Message(BaseModel):
+    role: str = Field(..., description="Role of the message (user, assistant, system)")
+    content: str = Field(..., description="Message content")
+
+
 class N8nWebhookRequest(BaseModel):
     """Request model for n8n webhook endpoint."""
     message: str = Field(..., description="The user's message to process")
-    conversation_history: Optional[list] = Field(
+    conversation_history: Optional[List[Message]] = Field(
         default=None,
         description="Optional conversation history for context"
     )

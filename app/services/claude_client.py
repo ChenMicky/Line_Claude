@@ -57,7 +57,9 @@ class ClaudeClient:
                 f"truncating to {max_chars} chars"
             )
             wiki_content = wiki_content[:max_chars] + "\n... (content truncated)"
-
+            logger.warning(
+                f"After truncated the wiki_content is: {wiki_content}"
+            )
         system_prompt = f"""You are a helpful assistant with access to an Obsidian wiki knowledge base.
 
 Here is the content from the Obsidian wiki:
@@ -98,6 +100,7 @@ Please use this wiki content as context when answering questions. If the answer 
             # Build system prompt with wiki content
             system_prompt = self._build_system_prompt(wiki_content)
 
+            logger.debug(f"Final System Prompt: {system_prompt[:200]}...")
             # Build messages list
             messages = []
 

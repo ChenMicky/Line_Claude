@@ -1,0 +1,13 @@
+{
+  "env": {
+    "ANTHROPIC_MODEL": "z-ai/glm-4.5-air:free"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(gh pages:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true
+}

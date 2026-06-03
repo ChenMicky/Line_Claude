@@ -18,6 +18,7 @@ services:
       - PORT=8000
       - HOST=0.0.0.0
       - OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+      - TZ=Asia/Taipei 
     restart: unless-stopped
     logging:
       driver: "json-file"
