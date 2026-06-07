@@ -118,7 +118,7 @@ Make sure you've copied `.env.example` to `.env` and added your API key.
 
 Change the port in `.env` or docker-compose.yml:
 ```bash
-PORT=8001
+PORT=8000
 ```
 
 ### Docker permission issues
