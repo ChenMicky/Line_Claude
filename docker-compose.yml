@@ -20,8 +20,14 @@ services:
       - OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
       - TZ=Asia/Taipei 
     restart: unless-stopped
+    networks:
+      - shared_n8n_network
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
+networks:
+  shared_n8n_network:
+    driver: bridge
+    external: true  # 👈 使用外部網路（提前建立）
